@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with ctpwrapper.  If not, see <http://www.gnu.org/licenses/>.
 
 """
-__version__ = "6.3.11.6"
-__date__ = "2018-01-09"
+__version__ = "6.3.13"
+__date__ = "2018-11-19"
 
 from ctpwrapper.Md import MdApiPy
 from ctpwrapper.Trader import TraderApiPy
