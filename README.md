@@ -11,7 +11,7 @@
 
 [CTP Website](http://www.sfit.com.cn/5_2_DocumentDown.htm)
 
-Version: v6.3.11_20180109
+Version: v6.3.13_20181119
 
 Platform: Linux 64bit, Windows 64bit
 
@@ -28,11 +28,6 @@ already install cython package.
 
     >>>pip install cython --upgrade
     >>>pip install ctpwrapper --upgrade
-
-
-# Donate [捐助]
-
-  <img src="images/alipay.png" width="250" height="250"><img src="images/wechat.jpg" width="250" height="250">
 
 
 # Usage
