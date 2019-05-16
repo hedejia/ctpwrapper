@@ -105,6 +105,20 @@ class TraderApiPy(TraderApiWrapper):
         """
         return super(TraderApiPy, self).ReqAuthenticate(pReqAuthenticate, nRequestID)
 
+    def RegisterUserSystemInfo(self, pUserSystemInfo):
+        """
+        注册用户终端信息，用于中继服务器多连接模式
+	    需要在终端认证成功后，用户登录前调用该接口
+        """
+        return super(TraderApiPy, self).ReqAuthenticate(pUserSystemInfo)
+
+    def SubmitUserSystemInfo(self, pUserSystemInfo):
+        """
+        注册用户终端信息，用于中继服务器多连接模式
+        需要在终端认证成功后，用户登录前调用该接口
+        """
+        return super(TraderApiPy, self).SubmitUserSystemInfo(pUserSystemInfo)
+
     def ReqUserLogin(self, pReqUserLogin, nRequestID):
         """
         用户登录请求
@@ -127,13 +141,29 @@ class TraderApiPy(TraderApiWrapper):
         """资金账户口令更新请求"""
         return super(TraderApiPy, self).ReqTradingAccountPasswordUpdate(pTradingAccountwordUpdate, nRequestID)
 
-    def ReqUserLogin2(self, pReqUserLogin, nRequestID):
-        """登录请求2"""
-        return super(TraderApiPy, self).ReqUserLogin2(pReqUserLogin, nRequestID)
+    def ReqUserAuthMethod(self, pReqUserAuthMethod, nRequestID):
+        """查询用户当前支持的认证模式"""
+        return super(TraderApiPy, self).ReqUserAuthMethod(pReqUserAuthMethod, nRequestID)
 
-    def ReqUserPasswordUpdate2(self, pUserPasswordUpdate, nRequestID):
-        """用户口令更新请求2"""
-        return super(TraderApiPy, self).ReqUserPasswordUpdate2(pUserPasswordUpdate, nRequestID)
+    def ReqGenUserCaptcha(self, pReqGenUserCaptcha, nRequestID):
+        """用户发出获取图形验证码请求"""
+        return super(TraderApiPy, self).ReqGenUserCaptcha(pReqGenUserCaptcha, nRequestID)
+
+    def ReqGenUserText(self, pReqGenUserText, nRequestID):
+        """用户发出获取短信验证码请求"""
+        return super(TraderApiPy, self).ReqGenUserText(pReqGenUserText, nRequestID)
+
+    def ReqUserLoginWithCaptcha(self, pReqUserLoginWithCaptcha, nRequestID):
+        """用户发出带有图片验证码的登陆请求"""
+        return super(TraderApiPy, self).ReqUserLoginWithCaptcha(pReqUserLoginWithCaptcha, nRequestID)
+
+    def ReqUserLoginWithText(self, pReqUserLoginWithText, nRequestID):
+        """用户发出带有短信验证码的登陆请求"""
+        return super(TraderApiPy, self).ReqUserLoginWithText(pReqUserLoginWithText, nRequestID)
+
+    def ReqUserLoginWithOTP(self, pReqUserLoginWithOTP, nRequestID):
+        """用户发出带有动态口令的登陆请求"""
+        return super(TraderApiPy, self).ReqUserLoginWithOTP(pReqUserLoginWithOTP, nRequestID)
 
     def ReqOrderInsert(self, pInputOrder, nRequestID):
         """报单录入请求"""
@@ -354,6 +384,10 @@ class TraderApiPy(TraderApiWrapper):
         """请求查询二级代理商资金校验模式"""
         return super(TraderApiPy, self).ReqQrySecAgentCheckMode(pQrySecAgentCheckMode, nRequestID)
 
+    def ReqQrySecAgentTradeInfo(self, pQrySecAgentTradeInfo, nRequestID):
+        """请求查询二级代理商信息"""
+        return super(TraderApiPy, self).ReqQrySecAgentTradeInfo(pQrySecAgentTradeInfo, nRequestID)
+
     def ReqQryOptionInstrTradeCost(self, pQryOptionInstrTradeCost, nRequestID):
         """请求查询期权交易成本"""
         return super(TraderApiPy, self).ReqQryOptionInstrTradeCost(pQryOptionInstrTradeCost, nRequestID)
@@ -480,6 +514,18 @@ class TraderApiPy(TraderApiWrapper):
 
     # 资金账户口令更新请求响应
     def OnRspTradingAccountPasswordUpdate(self, pTradingAccountPasswordUpdate, pRspInfo, nRequestID, bIsLast):
+        pass
+
+    # 查询用户当前支持的认证模式的回复
+    def OnRspUserAuthMethod(self, pRspUserAuthMethod, pRspInfo, nRequestID, bIsLast):
+        pass
+
+    # 获取图形验证码请求的回复
+    def OnRspGenUserCaptcha(self, pRspGenUserCaptcha, pRspInfo, nRequestID, bIsLast):
+        pass
+
+    # 获取短信验证码请求的回复
+    def OnRspGenUserText(self, pRspGenUserText, pRspInfo, nRequestID, bIsLast):
         pass
 
     # 报单录入请求响应
@@ -912,6 +958,10 @@ class TraderApiPy(TraderApiWrapper):
 
     # 请求查询二级代理商资金校验模式响应
     def OnRspQrySecAgentCheckMode(self, pSecAgentCheckMode, pRspInfo, nRequestID, bIsLast):
+        pass
+
+    # 请求查询二级代理商信息响应
+    def OnRspQrySecAgentTradeInfo(self, pSecAgentTradeInfo, pRspInfo, nRequestID, bIsLast):
         pass
 
     # 请求查询期权自对冲响应
