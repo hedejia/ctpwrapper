@@ -1,6 +1,7 @@
 # distutils: language=c++
 """
 (Copyright) 2018, Winton Wang <365504029@qq.com>
+(Copyright) 2019, He Dejia <16932556@qq.com>
 
 ctpwrapper is free software: you can redistribute it and/or modify
 it under the terms of the GNU LGPLv3 as published by
