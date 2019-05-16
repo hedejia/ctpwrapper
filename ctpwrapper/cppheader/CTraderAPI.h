@@ -1,4 +1,4 @@
-﻿/*
+/*
 (Copyright) 2018, Winton Wang <365504029@qq.com>
 
 ctpwrapper is free software: you can redistribute it and/or modify
@@ -31,6 +31,10 @@ static inline int TraderSpi_OnRspUserLogin(PyObject *, CThostFtdcRspUserLoginFie
 static inline int TraderSpi_OnRspUserLogout(PyObject *, CThostFtdcUserLogoutField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspUserPasswordUpdate(PyObject *, CThostFtdcUserPasswordUpdateField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspTradingAccountPasswordUpdate(PyObject *, CThostFtdcTradingAccountPasswordUpdateField *, CThostFtdcRspInfoField *, int, bool);
+static inline int TraderSpi_OnRspUserAuthMethod(PyObject *, CThostFtdcRspUserAuthMethodField *, CThostFtdcRspInfoField *, int, bool);
+static inline int TraderSpi_OnRspGenUserCaptcha(PyObject *, CThostFtdcRspGenUserCaptchaField *, CThostFtdcRspInfoField *, int, bool);
+static inline int TraderSpi_OnRspGenUserText(PyObject *, CThostFtdcRspGenUserTextField *, CThostFtdcRspInfoField *, int, bool);
+
 static inline int TraderSpi_OnRspOrderInsert(PyObject *, CThostFtdcInputOrderField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspParkedOrderInsert(PyObject *, CThostFtdcParkedOrderField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspParkedOrderAction(PyObject *, CThostFtdcParkedOrderActionField *, CThostFtdcRspInfoField *, int, bool);
@@ -142,6 +146,7 @@ static inline int TraderSpi_OnRspOptionSelfCloseAction(PyObject *, CThostFtdcInp
 
 static inline int TraderSpi_OnRspQrySecAgentTradingAccount(PyObject *, CThostFtdcTradingAccountField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspQrySecAgentCheckMode(PyObject *, CThostFtdcSecAgentCheckModeField *, CThostFtdcRspInfoField *, int, bool);
+static inline int TraderSpi_OnRspQrySecAgentTradeInfo(PyObject *, CThostFtdcSecAgentTradeInfoField *, CThostFtdcRspInfoField *, int, bool);
 
 static inline int TraderSpi_OnRspQryOptionSelfClose(PyObject *, CThostFtdcOptionSelfCloseField *, CThostFtdcRspInfoField *, int, bool);
 static inline int TraderSpi_OnRspQryInvestUnit(PyObject *, CThostFtdcInvestUnitField *, CThostFtdcRspInfoField *, int, bool);
@@ -217,6 +222,21 @@ public:
     virtual void OnRspTradingAccountPasswordUpdate(CThostFtdcTradingAccountPasswordUpdateField *pTradingAccountPasswordUpdate, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
         Python_GIL(TraderSpi_OnRspTradingAccountPasswordUpdate(self,pTradingAccountPasswordUpdate,pRspInfo,nRequestID,bIsLast));
     };
+
+    ///查询用户当前支持的认证模式的回复
+	virtual void OnRspUserAuthMethod(CThostFtdcRspUserAuthMethodField *pRspUserAuthMethod, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+	    Python_GIL(TraderSpi_OnRspUserAuthMethod(self,pRspUserAuthMethod,pRspInfo,nRequestID,bIsLast));
+	};
+
+	///获取图形验证码请求的回复
+	virtual void OnRspGenUserCaptcha(CThostFtdcRspGenUserCaptchaField *pRspGenUserCaptcha, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+	    Python_GIL(TraderSpi_OnRspGenUserCaptcha(self,pRspGenUserCaptcha,pRspInfo,nRequestID,bIsLast));
+	};
+
+	///获取短信验证码请求的回复
+	virtual void OnRspGenUserText(CThostFtdcRspGenUserTextField *pRspGenUserText, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+	    Python_GIL(TraderSpi_OnRspGenUserText(self,pRspGenUserText,pRspInfo,nRequestID,bIsLast));
+	};
 
     ///报单录入请求响应
     virtual void OnRspOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo, int nRequestID,
@@ -507,6 +527,10 @@ public:
                               Python_GIL(TraderSpi_OnRspQrySecAgentCheckMode(self,pSecAgentCheckMode,pRspInfo,nRequestID,bIsLast));
                               };
 
+    ///请求查询二级代理商信息响应
+	virtual void OnRspQrySecAgentTradeInfo(CThostFtdcSecAgentTradeInfoField *pSecAgentTradeInfo, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+	    Python_GIL(TraderSpi_OnRspQrySecAgentTradeInfo(self,pSecAgentTradeInfo,pRspInfo,nRequestID,bIsLast));
+	};
 
     ///请求查询期权交易成本响应
     virtual void OnRspQryOptionInstrTradeCost(CThostFtdcOptionInstrTradeCostField *pOptionInstrTradeCost,
